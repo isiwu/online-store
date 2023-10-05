@@ -52,13 +52,12 @@ export class ProductsController {
   async show(@Param() params, @Res() res) {
     //const product = ProductsController.products[params.id - 1];
     const product = await this.productsService.findOne(params.id);
-    console.log('product => ', product);
     if (product === undefined) {
       return res.redirect('/products');
     }
     const viewData = [];
-    viewData['title'] = product.getName + ' - Online Store';
-    viewData['subtitle'] = product.getName + ' - Product Information';
+    viewData['title'] = product.getName() + ' - Online Store';
+    viewData['subtitle'] = product.getName() + ' - Product Information';
     viewData['product'] = product;
     // return {
     //   viewData: viewData,
