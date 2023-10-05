@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AdminModule } from './admin/admin.module';
 import { AppController } from './app.controller';
@@ -7,6 +7,7 @@ import { ProductsService } from './models/products.service';
 import { ProductsController } from './products.Controller';
 //import { AppService } from './app.service';
 
+@Global()
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -23,5 +24,6 @@ import { ProductsController } from './products.Controller';
   ],
   controllers: [AppController, ProductsController],
   providers: [ProductsService],
+  exports: [ProductsService],
 })
 export class AppModule {}
