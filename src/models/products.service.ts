@@ -21,4 +21,8 @@ export class ProductsService {
       },
     });
   }
+
+  createOrUpdate(product: Product) {
+    return this.productsRepository.save(product);
+  }
 }

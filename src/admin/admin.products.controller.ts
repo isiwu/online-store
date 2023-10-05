@@ -1,4 +1,5 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Body, Controller, Get, Post, Redirect, Render } from '@nestjs/common';
+import { Product } from 'src/models/product.entity';
 import { ProductsService } from 'src/models/products.service';
 
 @Controller('admin/products')
@@ -15,5 +16,16 @@ export class AdminProductsController {
     return {
       viewData,
     };
+  }
+
+  @Post('/store')
+  @Redirect('/admin/products')
+  async store(@Body() body) {
+    const newProduct = new Product();
+    newProduct.setName(body.name);
+    newProduct.setDescription(body.description);
+    newProduct.setPrice(body.price);
+    newProduct.setImage('game.png');
+    await this.productsService.createOrUpdate(newProduct);
   }
 }
