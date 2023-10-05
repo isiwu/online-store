@@ -25,4 +25,8 @@ export class ProductsService {
   createOrUpdate(product: Product) {
     return this.productsRepository.save(product);
   }
+
+  async remove(id: string) {
+    await this.productsRepository.delete(id);
+  }
 }
