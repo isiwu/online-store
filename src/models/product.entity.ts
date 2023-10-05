@@ -15,5 +15,40 @@ export class Product {
   image: string;
 
   @Column()
-  price: string;
+  price: number;
+
+  getId() {
+    return this.id;
+  }
+  setId(id: number) {
+    this.id = id;
+  }
+
+  getName() {
+    return this.name.toUpperCase();
+  }
+  setName(name: string) {
+    this.name = name;
+  }
+
+  getDescription() {
+    return this.description;
+  }
+  setDescription(desc: string) {
+    this.description = desc;
+  }
+
+  getImage() {
+    return this.image;
+  }
+  setImage(image: string) {
+    this.image = image;
+  }
+
+  getPrice() {
+    return this.price;
+  }
+  setPrice(price: number) {
+    this.price = price;
+  }
 }

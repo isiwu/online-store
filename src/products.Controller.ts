@@ -57,8 +57,8 @@ export class ProductsController {
       return res.redirect('/products');
     }
     const viewData = [];
-    viewData['title'] = product.name + ' - Online Store';
-    viewData['subtitle'] = product.name + ' - Product Information';
+    viewData['title'] = product.getName + ' - Online Store';
+    viewData['subtitle'] = product.getName + ' - Product Information';
     viewData['product'] = product;
     // return {
     //   viewData: viewData,
