@@ -17,4 +17,16 @@ export class UsersService {
 
     return this.usersRepository.save(user);
   }
+
+  async login(email: string, password: string) {
+    const user = await this.usersRepository.findOne({ where: { email } });
+
+    if (user) {
+      const isMatch = await bcrypt.compare(password, user.getPassword());
+
+      if (isMatch) return user;
+    }
+
+    return null;
+  }
 }
