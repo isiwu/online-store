@@ -51,4 +51,15 @@ export class Product {
   setPrice(price: number) {
     this.price = price;
   }
+
+  static sumPricesByQuantities(products: Product[], productInSession) {
+    let total = 0;
+
+    for (let i = 0; i < products.length; i++) {
+      total =
+        total + products[i].getPrice() * productInSession[products[i].getId()];
+    }
+
+    return total;
+  }
 }

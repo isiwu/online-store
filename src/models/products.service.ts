@@ -22,6 +22,18 @@ export class ProductsService {
     });
   }
 
+  async findByIds(ids: string[]) {
+    const entities = [];
+    for (let i = 0; i < ids.length; i++) {
+      const entity = await this.productsRepository.findBy({
+        id: Number(ids[i]),
+      });
+      entity && entities.push(...entity);
+    }
+    //return this.productsRepository.findBy({id})
+    return entities;
+  }
+
   createOrUpdate(product: Product) {
     return this.productsRepository.save(product);
   }

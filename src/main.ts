@@ -23,8 +23,21 @@ async function bootstrap() {
   );
   app.use(function (req, res, next) {
     res.locals.session = req.session;
+    const flashErrors = req.session.flashErrors;
+    if (flashErrors?.length) {
+      req.locals.flashErrors = flashErrors;
+      req.session.flashErrors = null;
+    }
     next();
   });
+  app.use('/admin*', function (req, res, next) {
+    if (req.session.user && req.session.user.role === 'admin') {
+      next();
+    } else {
+      res.redirect('/');
+    }
+  });
+
   await app.listen(3000);
 }
 bootstrap();
