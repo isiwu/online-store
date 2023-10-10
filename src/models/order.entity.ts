@@ -23,7 +23,7 @@ export class Order {
   @ManyToOne(() => User, (user) => user.orders)
   user: User;
 
-  @OneToMany(() => Item, (item) => item.order)
+  @OneToMany(() => Item, (item) => item.order, { cascade: ['insert'] })
   items: Item[];
 
   getId() {
@@ -52,5 +52,12 @@ export class Order {
   }
   setUser(user: User) {
     this.user = user;
+  }
+
+  getItems() {
+    return this.items;
+  }
+  setItems(items: Item[]) {
+    this.items = items;
   }
 }

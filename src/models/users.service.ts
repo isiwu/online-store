@@ -29,4 +29,12 @@ export class UsersService {
 
     return null;
   }
+
+  findOne(id: string) {
+    return this.usersRepository.findOne({ where: { id: Number(id) } });
+  }
+
+  updateBalance(id: number, balance: number) {
+    return this.usersRepository.update(id, { balance: balance });
+  }
 }

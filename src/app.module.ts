@@ -4,6 +4,8 @@ import { AdminModule } from './admin/admin.module';
 import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
 import { CartModule } from './cart/cart.module';
+import { Order } from './models/order.entity';
+import { OrdersService } from './models/orders.service';
 import { Product } from './models/product.entity';
 import { ProductsService } from './models/products.service';
 import { User } from './models/user.entity';
@@ -23,13 +25,13 @@ import { ProductsController } from './products.Controller';
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([Product, User]),
+    TypeOrmModule.forFeature([Product, User, Order]),
     AdminModule,
     AuthModule,
     CartModule,
   ],
   controllers: [AppController, ProductsController],
-  providers: [ProductsService, UsersService],
+  providers: [ProductsService, UsersService, OrdersService],
   exports: [ProductsService, UsersService],
 })
 export class AppModule {}
