@@ -1,5 +1,6 @@
 import { Global, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AccountModule } from './account/account.module';
 import { AdminModule } from './admin/admin.module';
 import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
@@ -29,9 +30,10 @@ import { ProductsController } from './products.Controller';
     AdminModule,
     AuthModule,
     CartModule,
+    AccountModule,
   ],
   controllers: [AppController, ProductsController],
   providers: [ProductsService, UsersService, OrdersService],
-  exports: [ProductsService, UsersService],
+  exports: [ProductsService, UsersService, OrdersService],
 })
 export class AppModule {}
